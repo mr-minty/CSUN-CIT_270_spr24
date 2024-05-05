@@ -259,8 +259,9 @@ Note, you need to demonstrate Task 3 and 4 to me. To prepare for demonstration, 
 **Task 2 - C:** I'm not totally sure what he's expecting at this stage, because there are multiple "task 2"'s in the instructions. I believe you just need a working web server (Lab3-server) with the site and an autoscaling group to be created with the launch template created from the working web server.
 
 **Task 3 - B:** To verify that the information is the same on the website and your RDS
-            1. Open the XYZ university website and navigate to the list of students pages for reference
-            2. Open you Cloud9 terminal and enter the following commands in the terminal
+
+1. Open the XYZ university website and navigate to the list of students pages for reference
+2. Open you Cloud9 environment and enter the following commands in the terminal
            
 ```mysql -u admin -p -h [Lab3db_Endpoint]``` When prompted, enter the password for RDS.
 
