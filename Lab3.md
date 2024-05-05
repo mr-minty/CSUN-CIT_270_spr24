@@ -1,4 +1,7 @@
 # Lab 3: Cloud Web Application Builder
+
+***See bottom of document for information on grading***
+
 ## Step 1: Configuring the VPC
 
 ### 1.1 Create the VPC
@@ -55,25 +58,33 @@
 9. Existing VPC security groups: select Lab3
 10. Click **Create database**
 
-## Step 4 Create a Cloud9 environment
+## Step 3 Create a Cloud9 environment
 1. From the aws dashboard search for "Cloud9", open the Cloud9 dashboard
 2. Click on **Create environment**
 3. Name: Lab3-env
 4. Select *New EC2 instance*
 5. Under Network settings, Connection, select *Secure Shell(SSH)*
-6. Click **Create**
-7. *You will come back to AWS Cloud9 Environments in a later task*
+6. Click **Create** *You will come back to AWS Cloud9 Environments in a later task*
+7. Navigate to EC2 > Security Groups
+8. Select the Lab3 security group
+9. Under the Inbound rules tab, click **Edit inbound rules**
+10. Add the following rule, NOTE: Set source as the security group of your Cloud9 environment, type "sg-" into the source and it will look something like "aws-Cloud0-Lab3-env-..."
 
-## Step 5 Configuring the Launch Template
+| Rule # | Type | Source Type | Source |
+| --- | --- | --- | --- |
+| 1 | All traffic | Custom | SEE_NOTE |
 
-### 2.1 Launch an EC2 instance
+## Step 4 Configuring the Launch Template
+
+### 4.1 Launch an EC2 instance
 1. From the EC2 dashboard click **Launch instance**
 2. Name: Lab3
 3. Application and OS images: Ubuntu
-4. On *Network Settings* click **edit**
-5. VPC: Lab3
-6. Choose existing security group: Lab3
-7. Open *Advanced Details*
+4. Key pair (login): Either use vockey or create your own key pair
+5. On *Network Settings* click **edit**
+6. VPC: Lab3
+7. Choose existing security group: Lab3
+8. Open *Advanced Details*
 9. Scroll down to Metadata version: select "V1 and "V2 (token optional)"
 10. In User data, either copy and paste the contents of [Userdata](UserdataScript-phase-2.sh) into the User data field or upload it via **Choose file**
 11. Click **Launch Instance**
@@ -87,13 +98,179 @@
 16. From the website, click "List of students"
 17. Add a new student for database testing purposes
 
-### 2.2 Creating database credentials Secret
+### 4.2 Creating database credentials Secret
 
 1. Navigate to the Cloud9 dashboard
 2. Select My Environment from pop-out menu on the left
 3. Under *Cloud9 IDE* for LAB3-env click *Open*
 4. In the upper left, select File > New File
-5. From your host computer, open [Cloud9Scripts](cloud9-scripts.yml)
- 
-   
+5. From your host computer, open [Cloud9Scripts](cloud9-scripts.yml) with any text editor
+6. Modify the following section as shown using your own host (endpoint) and password for the lab3-db RDS configured in step 2.1, the username should be admin unless changed by you, and the database name must be all-caps STUDENTS. **Do not include the angle brackets <>**
 
+   ***Before***
+   ```
+   aws secretsmanager create-secret \
+    --name Mydbsecret \
+    --description "Database secret for web app" \
+    --secret-string "{\"user\":\"<username>\",\"password\":\"<password>\",\"host\":\"<RDS Endpoint>\",\"db\":\"<dbname>\"}"
+   ```
+   ***After***
+   ```
+   aws secretsmanager create-secret \
+    --name Mydbsecret \
+    --description "Database secret for web app" \
+    --secret-string "{\"user\":\"admin\",\"password\":\"speedpass\",\"host\":\"speed.cat0bj30vjn9.us-east-1.rds.amazonaws.com\",\"db\":\"STUDENTS\"}"
+   ```
+7. Copy the modified section from the previous step
+8. Back on the Cloud9 environment, paste this selection into the Untitled1 new file created earlier
+9. Then click File > Save As > Filename: script1 > Save
+10. Within the terminal below your file, enter```chmod u+x script1```, then run the script with ```./script1```
+11. From the aws dashboard search for and navigate to "Secrets Manager"
+12. Open Secrets from the pop-up menu on the left
+13. You should now see a secret called "Mydbsecret", select it
+14. In the *Overview* tab under Secret Value, click **Retrieve secret value**
+15. Verify that the information is correct
+
+### 4.3 Create a second web server with role
+
+1. From the EC2 dashboard click **Launch instance**
+2. Name: Lab3-server
+3. Application and OS images: Ubuntu
+4. Key pair (login): Either use vockey or your own key pair
+5. On *Network Settings* click **edit**
+6. VPC: Lab3
+7. Choose existing security group: Lab3
+8. Open *Advanced Details*
+9. Scroll down to Metadata version: select "V1 and "V2 (token optional)"
+10. In User data, either copy and paste the contents of [Userdata](UserdataScript-phase-3.sh) into the User data field or upload it via **Choose file**
+11. Click **Launch Instance**
+
+### 4.4 Migrating the database
+
+1. Navigate back to your open Cloud9 enviroment
+2. Run the follwing command from the terminal 
+
+```mysqldump -h 10.0.3.236 -u nodeapp -pstudent12 --databases STUDENTS > data.sql```
+
+3. Open the data.sql file from the left
+4. On line 22 of data.sql change the text
+
+"DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci" to
+
+"DEFAULT CHARACTER SET *utf8* COLLATE *utf8_general_ci*"
+
+6. Run the following command from the terminal, enter your RDS password when prompted
+```mysql -h RDSEndpoint -u nodeapp -p  STUDENTS < data.sql```
+
+7. From the EC2 > Intances screen open a tab with the public Ipv4 of Lab3-server, you should see the same entry/entries on the list students page.
+
+*If you see an upside down smiley face and red error message, ensure the commands ran successfully and that you made the proper edits to data.sql before running the second mysql command*
+
+## Step 5 Creating the Load Balancer and Auto Scaling Group
+
+### 5.1 Create an Application Load Balancer
+
+1. Navigate to EC2 > Load Balancers
+2. Click **Create load balancer**
+3. Select **Create** for Application load balancer
+4. Name: Lab3LB
+5. VPC: Lab3
+6. Under Mappings, select subnets 1b, 1d, and 1f
+7. Under Security groups, deselect default and select Lab3
+8. Under Listeners and routing, open *Create target group*
+      a. Leave instances selected
+      b. Name: Lab3targetgroup
+      c. VPC: Lab3
+      d. Next
+      e. Don't register any targets
+      f. Click *Create target group*
+9. Back on the Load balancer configuration, refresh target groups and select Lab3targetgroup
+10. Scroll down and click *Create load balancer*
+
+### 5.2 Create an autoscaling group
+
+1. Navigate to EC2 > Instances and select the Lab3-server instance
+2. With Lab3-server selected, click *Actions* > Image and templates > create template from instance
+3. Name: Lab3template
+4. Key pair (login): Either use vockey or your own key pair
+5. Scroll down and click *Create launch template*
+6. Click *View launch templates*
+7. Select Lab3template then click > *Actions* > Create Auto Scaling group
+8. Name: Lab3AutoScalingGroup
+9. Next
+10. Under Network,
+11. VPC: Lab3
+12. Availability Zones and subnets: select 1b, 1d, and 1f
+13. Next
+14. Select Attach to an existing load balancer
+15. Select Choose from your load balancer target groups
+16. Select Lab3targetgroup
+17. Next
+18. Set Desired capacity and Min desired capacity to 1, set Max desired capacity to 3
+19. Under Automatic scaling, select Target tracking scaling policy, leave default values
+20. Next
+21. Next
+22. Next
+23. Click *Create Auto Scaling group*
+24. Wait for your Auto Scaling group to finish provisioning a  helathy instance, then navigate to EC2 > Load Balancers
+25. Select Lab3LB then copy and paste the DNS name into a new tab
+
+***If you don't see the website, ensure that the target group instance is healthy in EC2 > target groups > Lab3targetgroup.*** *This may take some time and fix itself, give at least ten minutes for website to show up via the load Balancer DNS name after creating auto scaling group. Additionally, you can verify that the instance itself is not the issue by opening a tab with the public IPv4 address of the active Lab3targetgroup instance.*
+   
+## Step 6 Test the Auto Scaling policy
+
+1. Navigate to EC2 > Target groups
+2. Select the instance ID of your Auto Scaling group instance (Lab3-server)
+3. Copy the public IPv4 of Lab3-server ***make sure this is the target group instance and not the original *Lab3-server***
+4. Open a terminal/command prompt on your computer
+5. Navigate to the directory where you key pair is downloaded
+6. Run the command ```ssh -i *key_pair* -l ubuntu *Lab3-server_PublicIpv4*```
+7. Enter *yes* to the fingerprint question
+8. When you see a green ubuntu username in your prompt, you have successfully logged in
+9. Run the command ```sudo apt install stress s-tui -y```
+10. After installation run ```s-tui```
+11. You should see a graphical display of system resources
+12. Move the cursor down to Stress and press Enter
+13. You should see green and purple bars slowly increasing in size
+
+*Within ten minutes or so you should see a new instance, also called Lab3-server, start initializing. You can also confirm by looking at EC2 > Target groups > Lab3targetgroup and seeing a second target and/or EC2 > Auto Scaling groups > Lab3AutoSclaingGroup > Activity and you'll see a new instance being launched.*
+
+14. Once you have verified that the auto scaling policy is working, you can press 'q' or scroll down to quit out of s-tui on the SSH terminal.
+
+*The second instance that was created will be terminated once the stress test ends because desired capacity is set to 1*
+
+**This concludes Lab 3: CLoud Web Application Builder**
+
+## Information on Grading
+
+From Professor Rabinovich on Canvas:
+Grading:
+
+Task 2 - C
+
+Task 3 - B
+
+Task 4 - A
+
+Note, you need to demonstrate Task 3 and 4 to me. To prepare for demonstration, ensure that in task 3 records on the web page match the records in the database. For task 4 you need to show me that new instances get launched when the load reaches specified value
+
+### Details
+
+**Task 2 - C:** I'm not totally sure what he's expecting at this stage, because there are multiple "task 2"'s in the instructions. I believe you just need a working web server (Lab3-server) with the site and an autoscaling group to be created with the launch template created from the working web server.
+
+**Task 3 - B:** To verify that the information is the same on the website and your RDS
+            1. Open the XYZ university website and navigate to the list of students pages for reference
+            2. Open you Cloud9 terminal and enter the following commands in the terminal
+           
+```mysql -u admin -p -h [Lab3db_Endpoint]``` When prompted, enter the password for RDS.
+
+*If successful you should now see mysql> on the left*
+
+```use database STUDENTS; SELECT * FROM students;```
+
+*If successful you should see command line output of the same information that you see on XYZ University's student list*
+
+
+
+           
+**Task 4 - A:** If you are able to complete all the steps of the walkthrough, you have earned the A, verifying the auto scaling policy is covered in (Step 6).
