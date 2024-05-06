@@ -164,7 +164,7 @@
 "DEFAULT CHARACTER SET *utf8* COLLATE *utf8_general_ci*"
 
 6. Run the following command from the terminal, enter your RDS password when prompted
-```mysql -h RDSEndpoint -u nodeapp -p  STUDENTS < data.sql```
+```mysql -h RDSEndpoint -u admin -p  STUDENTS < data.sql```
 
 7. From the EC2 > Intances screen open a tab with the public Ipv4 of Lab3-server, you should see the same entry/entries on the list students page.
 
