@@ -2,6 +2,10 @@
 
 ***See bottom of document for information on grading***
 
+**NOTE: If you are using vockey for this lab, it is a different key file than the "labsuser.pem" we used for Saturday labs you must download the proper "labsuser.pem" from the "AWS details" tab on the "Lab Instructions: Building a Highly Available, Scalable Web Application" module within the "AWS Academy Lab Project - Cloud Web Application Builder" blue colored class on the [AWS Canvas dashboard](https://awsacademy.instructure.com/login/canvas).**
+
+**tldr; You need to make your own ssh key or download the correct pem file from the "AWS details" tab, which is located where you launch this lab.**
+
 ## Step 1: Configuring the VPC
 
 ### 1.1 Create the VPC
