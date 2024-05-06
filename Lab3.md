@@ -154,7 +154,7 @@
 1. Navigate back to your open Cloud9 enviroment
 2. Run the follwing command from the terminal (For the myqldump it must be the private IP of Lab3, the first EC2 created, bc that's where the OG database is)
 
-```mysqldump -h [Lab3-EC2_Private_IP] -u nodeapp -pstudent12 --databases STUDENTS > data.sql```
+```mysqldump -h [Lab3-EC2_Private_IP] -u nodeapp -p student12 --databases STUDENTS > data.sql```
 
 3. Open the data.sql file from the left
 4. On line 22 of data.sql change the text
