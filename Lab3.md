@@ -18,6 +18,25 @@
 2. Click **Create subnet**
 3. Select Lab3 for the VPC ID
 4. Create the following six subnets (Use add new subnet to make them all in one screen)
+
+### 1.3 Create the Internet Gateway
+1. From VPC dashboard, on the lefthand side, select "Internet gateways"
+2. Click **Create internet gateway**
+3. Name: Lab3-IG
+4. Click **Create internet gateway**
+5. From the Internet gateways screen select Lab3-IG
+6. Click Actions > Attach to VPC
+7. Under Available VPCs, select Lab3
+8. Click **Attach internet gateway**
+
+### 1.4 Editing VPC route table
+1. From VPC > Your VPCs, select Lab3
+2. Within the Resource Map, open the link within the route table "rtb"
+3. Once you're on the route table screen, click on **Edit routes**
+4. Click **Add route**
+5. Destination: 0.0.0.0/0
+6. Target: Internet Gateway: Select Lab3-IG
+7. Click **Save changes**
    
 | Subnet | CIDR |
 | --- | --- |
@@ -225,7 +244,7 @@
 22. Next
 23. Next
 24. Click *Create Auto Scaling group*
-25. Wait for your Auto Scaling group to finish provisioning a  helathy instance, then navigate to EC2 > Load Balancers
+25. Wait for your Auto Scaling group to finish provisioning a  healthy instance, then navigate to EC2 > Load Balancers
 26. Select Lab3LB then copy and paste the DNS name into a new tab
 
 ***If you don't see the website, ensure that the target group instance is healthy in EC2 > target groups > Lab3targetgroup.*** *This may take some time and fix itself, give at least ten minutes for website to show up via the load Balancer DNS name after creating auto scaling group. Additionally, you can verify that the instance itself is not the issue by opening a tab with the public IPv4 address of the active Lab3targetgroup instance.*
