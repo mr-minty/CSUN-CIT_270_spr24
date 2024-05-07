@@ -163,7 +163,13 @@
 
 "DEFAULT CHARACTER SET *utf8* COLLATE *utf8_general_ci*"
 
-6. Run the following command from the terminal, enter your RDS password when prompted
+5. On line 42 of data.sql change the text
+
+"DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;" to
+
+"DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;"
+
+7. Run the following command from the terminal, enter your RDS password when prompted
 
 ```mysql -h RDSEndpoint -u admin -p  STUDENTS < data.sql``` **Password is whatever you set for RDS**
 
