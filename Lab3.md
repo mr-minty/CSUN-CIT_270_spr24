@@ -189,11 +189,13 @@
 
 "DEFAULT CHARSET=*utf8* COLLATE=*utf8_general_ci*;"
 
+6. Save the data.sql file, ctrl + s
+
 7. Run the following command from the terminal, enter your RDS password when prompted
 
 ```mysql -h RDSEndpoint -u admin -p < data.sql``` **Password is whatever you set for RDS**
 
-7. From the EC2 > Intances screen open a tab with the public Ipv4 of Lab3-server, you should see the same entry/entries on the list students page.
+8. From the EC2 > Intances screen open a tab with the public Ipv4 of Lab3-server, you should see the same entry/entries on the list students page.
 
 *If you see an upside down smiley face and red error message, ensure the commands ran successfully and that you made the proper edits to data.sql before running the second mysql command*
 
