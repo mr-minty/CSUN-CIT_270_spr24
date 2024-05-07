@@ -205,27 +205,28 @@
 2. With Lab3-server selected, click *Actions* > Image and templates > create template from instance
 3. Name: Lab3template
 4. Key pair (login): Either use vockey or your own key pair
-5. Scroll down and click *Create launch template*
-6. Click *View launch templates*
-7. Select Lab3template then click > *Actions* > Create Auto Scaling group
-8. Name: Lab3AutoScalingGroup
-9. Next
-10. Under Network,
-11. VPC: Lab3
-12. Availability Zones and subnets: select 1b, 1d, and 1f
-13. Next
-14. Select Attach to an existing load balancer
-15. Select Choose from your load balancer target groups
-16. Select Lab3targetgroup
-17. Next
-18. Set Desired capacity and Min desired capacity to 1, set Max desired capacity to 3
-19. Under Automatic scaling, select Target tracking scaling policy, leave default values
-20. Next
+5. Ensure that the LabInstanceprofile and Metadata settings match the settings from earlier
+6. Scroll down and click *Create launch template*
+7. Click *View launch templates*
+8. Select Lab3template then click > *Actions* > Create Auto Scaling group
+9. Name: Lab3AutoScalingGroup
+10. Next
+11. Under Network,
+12. VPC: Lab3
+13. Availability Zones and subnets: select 1b, 1d, and 1f
+14. Next
+15. Select Attach to an existing load balancer
+16. Select Choose from your load balancer target groups
+17. Select Lab3targetgroup
+18. Next
+19. Set Desired capacity and Min desired capacity to 1, set Max desired capacity to 3
+20. Under Automatic scaling, select Target tracking scaling policy, leave default values
 21. Next
 22. Next
-23. Click *Create Auto Scaling group*
-24. Wait for your Auto Scaling group to finish provisioning a  helathy instance, then navigate to EC2 > Load Balancers
-25. Select Lab3LB then copy and paste the DNS name into a new tab
+23. Next
+24. Click *Create Auto Scaling group*
+25. Wait for your Auto Scaling group to finish provisioning a  helathy instance, then navigate to EC2 > Load Balancers
+26. Select Lab3LB then copy and paste the DNS name into a new tab
 
 ***If you don't see the website, ensure that the target group instance is healthy in EC2 > target groups > Lab3targetgroup.*** *This may take some time and fix itself, give at least ten minutes for website to show up via the load Balancer DNS name after creating auto scaling group. Additionally, you can verify that the instance itself is not the issue by opening a tab with the public IPv4 address of the active Lab3targetgroup instance.*
    
