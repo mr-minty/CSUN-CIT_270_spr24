@@ -224,7 +224,7 @@
 2. With Lab3-server selected, click *Actions* > Image and templates > create template from instance
 3. Name: Lab3template
 4. Key pair (login): Either use vockey or your own key pair
-5. Ensure that the LabInstanceprofile and Metadata settings match the settings from earlier
+5. Ensure that the LabInstanceprofile, Metadata and userdata settings match the settings from earlier
 6. Scroll down and click *Create launch template*
 7. Click *View launch templates*
 8. Select Lab3template then click > *Actions* > Create Auto Scaling group
