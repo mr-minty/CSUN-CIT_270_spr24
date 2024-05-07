@@ -92,7 +92,7 @@
 8. Navigate to EC2 > Security Groups
 9. Select the Lab3 security group
 10. Under the Inbound rules tab, click **Edit inbound rules**
-11. Add the following rule, NOTE: Set source as the security group of your Cloud9 environment, type "sg-" into the source and it will look something like "aws-Cloud0-Lab3-env-..."
+11. Add the following rule, NOTE: Set source as the security group of your Cloud9 environment, type "sg-" into the source and it will look something like "aws-Cloud9-Lab3-env-..."
 
 | Rule # | Type | Source Type | Source |
 | --- | --- | --- | --- |
