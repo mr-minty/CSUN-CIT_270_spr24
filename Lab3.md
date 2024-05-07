@@ -115,7 +115,7 @@
 12. Wait for the Lab3 instance to finish initializing
 13. From EC2 > Instances, select the Lab3 instance
 14. In the *Details* tab click *open address* under Public IPv4 Address
-15. You should see a website titled "XYZ University", if you don't click on the address bar and scoll all the way left, then change "https://*EC2-PublicIPv4*" to "http://*EC2PublicIPv4"*
+15. You should see a website titled "XYZ University", if you don't click on the address bar and scroll all the way left, then change "https://*EC2-PublicIPv4*" to "http://*EC2PublicIPv4"*
    
 *If you still don't see the website ensure that the user data was properly entered during the Lab3 EC2's configuration*
 
