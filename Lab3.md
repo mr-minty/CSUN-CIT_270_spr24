@@ -171,7 +171,7 @@
 
 7. Run the following command from the terminal, enter your RDS password when prompted
 
-```mysql -h RDSEndpoint -u admin -p  STUDENTS < data.sql``` **Password is whatever you set for RDS**
+```mysql -h RDSEndpoint -u admin -p < data.sql``` **Password is whatever you set for RDS**
 
 7. From the EC2 > Intances screen open a tab with the public Ipv4 of Lab3-server, you should see the same entry/entries on the list students page.
 
