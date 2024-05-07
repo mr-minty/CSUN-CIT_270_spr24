@@ -167,7 +167,7 @@
 
 "DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;" to
 
-"DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;"
+"DEFAULT CHARSET=*utf8* COLLATE=*utf8_general_ci*;"
 
 7. Run the following command from the terminal, enter your RDS password when prompted
 
