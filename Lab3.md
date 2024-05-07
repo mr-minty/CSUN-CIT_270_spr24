@@ -154,7 +154,7 @@
 1. Navigate back to your open Cloud9 enviroment
 2. Run the follwing command from the terminal (For the myqldump it must be the private IP of Lab3, the first EC2 created, bc that's where the OG database is)
 
-```mysqldump -h [Lab3-EC2_Private_IP] -u nodeapp -p student12 --databases STUDENTS > data.sql```
+```mysqldump -h [Lab3-EC2_Private_IP] -u nodeapp -p --databases STUDENTS > data.sql``` **Password is "student12"**
 
 3. Open the data.sql file from the left
 4. On line 22 of data.sql change the text
@@ -165,7 +165,7 @@
 
 6. Run the following command from the terminal, enter your RDS password when prompted
 
-```mysql -h RDSEndpoint -u admin -p  STUDENTS < data.sql```
+```mysql -h RDSEndpoint -u admin -p  STUDENTS < data.sql``` **Password is whatever you set for RDS**
 
 7. From the EC2 > Intances screen open a tab with the public Ipv4 of Lab3-server, you should see the same entry/entries on the list students page.
 
