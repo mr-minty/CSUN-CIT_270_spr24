@@ -159,7 +159,7 @@
 
 1. From the EC2 dashboard click **Launch instance**
 2. Name: Lab3-server
-3. Application and OS images: Ubuntu
+3. Application and OS images: ***Ubuntu*** Must be Ubuntu, or the app will not work.
 4. Key pair (login): Either use vockey or your own key pair
 5. On *Network Settings* click **edit**
 6. VPC: Lab3
