@@ -43,7 +43,7 @@
 | public1a | 10.0.0.0/24 |
 | private1b | 10.0.1.0/24 |
 | public1c | 10.0.2.0/24 |
-| private1d | 10.3.0.0/24 |
+| private1d | 10.0.3.0/24 |
 | public1e | 10.0.4.0/24 |
 | private1f | 10.0.5.0/24 |
 
