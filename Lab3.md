@@ -68,11 +68,12 @@
 3. Name: Lab3-env
 4. Select *New EC2 instance*
 5. Under Network settings, Connection, select *Secure Shell(SSH)*
-6. Click **Create** *You will come back to AWS Cloud9 Environments in a later task*
-7. Navigate to EC2 > Security Groups
-8. Select the Lab3 security group
-9. Under the Inbound rules tab, click **Edit inbound rules**
-10. Add the following rule, NOTE: Set source as the security group of your Cloud9 environment, type "sg-" into the source and it will look something like "aws-Cloud0-Lab3-env-..."
+6. Under VPC settings select Lab3
+7. Click **Create** *You will come back to AWS Cloud9 Environments in a later task*
+8. Navigate to EC2 > Security Groups
+9. Select the Lab3 security group
+10. Under the Inbound rules tab, click **Edit inbound rules**
+11. Add the following rule, NOTE: Set source as the security group of your Cloud9 environment, type "sg-" into the source and it will look something like "aws-Cloud0-Lab3-env-..."
 
 | Rule # | Type | Source Type | Source |
 | --- | --- | --- | --- |
