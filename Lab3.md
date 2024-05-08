@@ -129,7 +129,7 @@
 3. Under *Cloud9 IDE* for LAB3-env click *Open*
 4. In the upper left, select File > New File
 5. From your host computer, open [Cloud9Scripts](cloud9-scripts.yml) with any text editor
-6. Modify the following section as shown using your own host (endpoint) and password for the lab3-db RDS configured in step 2.1, the username should be admin unless changed by you, and the database name must be all-caps STUDENTS. **Do not include the angle brackets <>**
+6. Modify the following section as shown using your own host (endpoint) and password for the lab3-db RDS configured in step 2.1, the username should be admin unless changed by you, and the **database <dbname> name must be all-caps STUDENTS.** **Do not include the angle brackets <>**
 
    ***Before***
    ```
