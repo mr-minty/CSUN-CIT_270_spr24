@@ -165,9 +165,10 @@
 6. VPC: Lab3
 7. Choose existing security group: Lab3
 8. Open *Advanced Details*
-9. Scroll down to Metadata version: select "V1 and "V2 (token optional)"
-10. In User data, either copy and paste the contents of [Userdata](UserdataScript-phase-3.sh) into the User data field or upload it via **Choose file**
-11. Click **Launch Instance**
+9. Under IAM instance profile, select LabInstanceProfile
+10. Scroll down to Metadata version: select "V1 and "V2 (token optional)"
+11. In User data, either copy and paste the contents of [Userdata](UserdataScript-phase-3.sh) into the User data field or upload it via **Choose file**
+12. Click **Launch Instance**
 
 ### 4.4 Migrating the database
 
