@@ -177,7 +177,7 @@
 ```mysqldump -h [Lab3-EC2_Private_IP] -u nodeapp -p --databases STUDENTS > data.sql``` **Password is "student12"**
 
 3. Open the data.sql file from the left
-4. On line 22 of data.sql change the text
+4. On line 22 of data.sql change the text **DO NOT DELETE THE ENTIRE LINE< ONLY REPLACE THE KEY WORDS WRITTEN BELOW**
 
 "DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci" to
 
