@@ -67,6 +67,7 @@
 | 1 | HTTP | Anywhere-IPv4 | 0.0.0.0/0 |
 | 2 | HTTPS | Anywhere-IPv4 | 0.0.0.0/0 |
 | 3 | All Traffic | Custom | SEE_NOTE |
+| 4 | SSH | My IP | |
 
 
 ## Step 2 Configuring the database
