@@ -6,6 +6,8 @@
 
 **tldr; You need to make your own ssh key or download the correct pem file from the "AWS details" tab, which is located where you launch this lab.**
 
+## ATTENTION: Please make sure you provide unique names for the components of this lab, do not use "Lab3" and so on. Thank you.
+
 ## Step 1: Configuring the VPC
 
 ### 1.1 Create the VPC
