@@ -132,7 +132,7 @@
 3. Under *Cloud9 IDE* for LAB3-env click *Open*
 4. In the upper left, select File > New File
 5. From your host computer, open [Cloud9Scripts](cloud9-scripts.yml) with any text editor
-6. Modify the following section as shown using your own host (endpoint) and password for the lab3-db RDS configured in step 2.1, the username should be admin unless changed by you, and the **database <dbname> name must be all-caps STUDENTS.** **Do not include the angle brackets <>**
+6. Modify the following section as shown using your own host (endpoint) and password for the lab3-db RDS configured in step 2.1, the username should be admin unless changed by you, and the **database \<dbname\> name must be all-caps STUDENTS.** **Do not include the angle brackets <>**
 
    ***Before***
    ```
@@ -156,7 +156,7 @@
 12. Open Secrets from the pop-up menu on the left
 13. You should now see a secret called "Mydbsecret", select it
 14. In the *Overview* tab under Secret Value, click **Retrieve secret value**
-15. Verify that the information is correct
+15. Verify that the information is correct and that dbname is all-caps STUDENTS
 
 ### 4.3 Create a second web server with role
 
@@ -183,7 +183,9 @@
 3. Open the data.sql file from the left
 4. On line 22 of data.sql change the text **DO NOT DELETE THE ENTIRE LINE, ONLY REPLACE THE KEY WORDS WRITTEN BELOW**
 
-"DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci" **to**
+"DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci"
+
+**to**
 
 "DEFAULT CHARACTER SET *utf8* COLLATE *utf8_general_ci*"
 
