@@ -52,7 +52,7 @@
 6. Target: Internet Gateway: Select Lab3-IG
 7. Click **Save changes**
 
-### 1.3 Create the security group
+### 1.5 Create the security group
 1. From the EC2 dashboard, on the lefthand side, select *Security Groups*
 2. Click **Create security group**
 3. Name: Lab3
