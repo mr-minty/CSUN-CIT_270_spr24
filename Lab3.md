@@ -183,9 +183,7 @@
 3. Open the data.sql file from the left
 4. On line 22 of data.sql change the text **DO NOT DELETE THE ENTIRE LINE, ONLY REPLACE THE KEY WORDS WRITTEN BELOW**
 
-"DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci"
-
-**to**
+"DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci" **to**
 
 "DEFAULT CHARACTER SET *utf8* COLLATE *utf8_general_ci*"
 
