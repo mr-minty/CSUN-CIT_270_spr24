@@ -21,6 +21,18 @@
 3. Select Lab3 for the VPC ID
 4. Create the following six subnets (Use add new subnet to make them all in one screen)
 
+| Subnet | CIDR |
+| --- | --- |
+| public1a | 10.0.0.0/24 |
+| private1b | 10.0.1.0/24 |
+| public1c | 10.0.2.0/24 |
+| private1d | 10.0.3.0/24 |
+| public1e | 10.0.4.0/24 |
+| private1f | 10.0.5.0/24 |
+
+5. From the subnets page, one at a time, select each public subnet then click **actions > Edit subnet settings**
+6. Check *Enable auto-assign public IPv4 address*
+
 ### 1.3 Create the Internet Gateway
 1. From VPC dashboard, on the lefthand side, select "Internet gateways"
 2. Click **Create internet gateway**
@@ -39,18 +51,6 @@
 5. Destination: 0.0.0.0/0
 6. Target: Internet Gateway: Select Lab3-IG
 7. Click **Save changes**
-   
-| Subnet | CIDR |
-| --- | --- |
-| public1a | 10.0.0.0/24 |
-| private1b | 10.0.1.0/24 |
-| public1c | 10.0.2.0/24 |
-| private1d | 10.0.3.0/24 |
-| public1e | 10.0.4.0/24 |
-| private1f | 10.0.5.0/24 |
-
-5. From the subnets page, one at a time, select each public subnet then click **actions > Edit subnet settings**
-6. Check *Enable auto-assign public IPv4 address*
 
 ### 1.3 Create the security group
 1. From the EC2 dashboard, on the lefthand side, select *Security Groups*
